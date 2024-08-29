@@ -1,0 +1,13 @@
+.card{
+    height: 500px;
+    width: 250px;
+    border: 2px solid grey;
+    border-radius: 15%;
+    .top{
+        height: 45%;
+        width: 100%;
+        background-color: aquamarine;
+        overflow: hidden;
+    }
+}
+

@@ -45,13 +45,14 @@ const TasksPage = () => {
       setTasks(updatedTasks);
     }
   };
+ console.log(tasks);
   return (
     <div>
       <h1>TasksPage</h1>
       <Link to="/create"><button>Create</button></Link>
       
       <div>
-        <label htmlFor="sorting">Sorting options</label>
+        <label htmlFor="sorting">Sort by priority</label>
         <select id="sorting" onChange={onPriorityChange}>
           <option id="All">All</option>
           <option id="High">High</option>
