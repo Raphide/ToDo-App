@@ -38,6 +38,7 @@ export interface TodoResponse {
   task: string;
   description: string;
   category: Category;
+  categoryId: string;
   priority: string;
   completed: boolean;
   completedAt: string;
@@ -117,6 +118,19 @@ export const editTodoById = async (id: number, data: TodoFormData) => {
   }
   return (await response.json()) as TodoResponse;
 };
+
+export const completeTodoById = async (id: number) => {
+  const response = await fetch(baseURL + `/todos/complete/${id}`, {
+    method: "PATCH",
+    headers:{
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    throw new Error("Something went wrong");
+  }
+  return (await response.json()) as TodoResponse;
+}
 
 export const getAllCategories = async () => {
   const response = await fetch(baseURL + "/categories");

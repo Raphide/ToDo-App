@@ -1,5 +1,6 @@
 import { SetStateAction, useEffect, useState } from "react";
 import {
+  completeTodoById,
   deleteTodoById,
   getAllTodos,
   getTodosByPriority,
@@ -11,6 +12,7 @@ import { Link } from "react-router-dom";
 const TasksPage = () => {
   const [tasks, setTasks] = useState<TodoResponse[]>([]);
   const [priority, setPriority] = useState<string>("All");
+  const [completed, setCompleted] = useState(false);
   useEffect(() => {
     if (priority !== "All") {
       getTodosByPriority(priority)
@@ -23,7 +25,7 @@ const TasksPage = () => {
       
     }
     console.log("Is this looping?")
-  }, [priority]);
+  }, [priority, completed]);
 
   const onPriorityChange = (e: {
     target: { value: SetStateAction<string> };
@@ -45,6 +47,23 @@ const TasksPage = () => {
       setTasks(updatedTasks);
     }
   };
+
+  const onComplete = async (id: number) => {
+    const confirmed = confirm("Are you ready to mark this task as complete?");
+    if(!confirmed){
+      return;
+    }
+    const isCompleted = await completeTodoById(id).catch((e)=> {
+      console.log(e);
+      return false;
+    });
+    if (isCompleted){
+      const updatedTasks = tasks.filter((task) => task.completed !== true);
+      setTasks(updatedTasks);
+      setCompleted(true);
+    }
+  }
+
  console.log(tasks);
   return (
     <div>
@@ -61,7 +80,10 @@ const TasksPage = () => {
         </select>
       </div>
       {tasks.map((task) => (
-        <TaskCard key={task.id} task={task} onDelete={onDelete} />
+       !task.completed && <TaskCard key={task.id} task={task} onDelete={onDelete} onComplete={onComplete}/>
+      )).sort()}
+       {tasks.map((task) => (
+       task.completed && <TaskCard key={task.id} task={task} onDelete={onDelete} onComplete={onComplete}/>
       ))}
     </div>
   );
