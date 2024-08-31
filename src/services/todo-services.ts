@@ -49,6 +49,7 @@ export interface Category {
   createdAt: string;
   updatedAt: string;
   name: string;
+  todos: Array<TodoResponse>;
 }
 
 export const getAllTodos = async () => {
@@ -149,7 +150,21 @@ export const createCategory = async (data: CategoryFormData) => {
     },
   }); 
   if (!response.ok) {
+    if (response.status === 500) {
+      throw new Error(await response.text());
+    }
     throw new Error("Failed to post");
+  }
+  return (await response.json()) as Category;
+}
+
+export const getCategoryById = async (id: number) => {
+  const response = await fetch(baseURL + `/categories/${id}`)
+  if (!response.ok) {
+    if (response.status === 404) {
+      throw new Error(await response.text());
+    }
+    throw new Error("Something went wrong");
   }
   return (await response.json()) as Category;
 }

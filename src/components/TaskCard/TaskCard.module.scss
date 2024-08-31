@@ -1,47 +1,92 @@
-.card{
+.card {
+  position: relative;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: flex-start;
+  height: 500px;
+  width: 350px;
+  background-color: #f7f2fa;
+  color: rgb(37, 44, 50);
+  border-radius: 12px;
+  margin: 8px;
+  overflow: hidden;
+  box-shadow: -7px 7px 4px -4px rgba(0, 0, 0, 0.39);
+  transition: 0.2s ease-in-out;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  &:hover {
+    box-shadow: -12px 11px 10px 4px rgba(0, 0, 0, 0.39);
+    transform: translateZ(100);
+    backface-visibility: hidden;
+    transition: 0.5s ease-in-out;
+  }
+  .top {
+    min-height: 186px;
+    max-height: 186px;
+    height: 186px;
+    width: 350px;
+
+    background-color: rgb(238, 158, 92);
+    overflow: hidden;
+    &_low {
+      background-color: rgb(92, 204, 92);
+    }
+    &_medium {
+      background-color: rgb(241, 183, 75);
+    }
+    &_high {
+      background-color: rgb(245, 87, 87);
+    }
+  }
+  .head {
+    padding: 0px 16px;
+    h1 {
+      font-size: 2em;
+      margin: 8px 0px;
+    }
+    h3 {
+      margin-top: 8px;
+    }
+    h5 {
+      margin: 8px 0px;
+    }
+    h6 {
+      margin: 8px 0px;
+    }
+  }
+
+  .content {
+    padding: 0px 16px;
+  }
+  .bottom {
+    position: absolute;
+    bottom: 8px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-content: flex-start;
-    height: 500px;
+    justify-content: center;
+    margin-bottom: 0px;
+
     width: 350px;
-    background-color: antiquewhite;
-    // border: 2px solid grey;
-    border-radius: 24px;
-    box-shadow: -7px 7px 4px -4px rgba(0,0,0,0.39);
-    margin: 2em;
-    overflow: hidden;
-    transition: 0.2s ease;
-    &:hover{
-        // transform: translate(5px,-5px);
-        box-shadow: -12px 11px 10px 4px rgba(0,0,0,0.39);
-        scale: 102%;
-        transition: 0.5s ease;
+    h6 {
+      align-self: center;
+      margin: 0.5em;
     }
-    .top{
-        height: 35%;
-        width: 100%;
-        background-color: rgb(238, 158, 92);
-        overflow: hidden;
-        &_low{
-            background-color: rgb(92, 204, 92);
-        }
-        &_medium{
-            background-color: rgb(241, 183, 75);
-        }
-        &_high{
-            background-color: rgb(245, 87, 87);
-        }
+    .topButtons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
     }
-
-    button{
-        height: 2em;
-        width: 7em;
-        border-radius: 24px;
-        border: none;
-        margin: 0.5em;
-        background-color: rgb(238, 158, 92);
-        cursor: pointer;
+    .edit {
+      outline: 2px solid #6750a4;
+      background-color: #f7f2fa;
+      color: #6750a4;
     }
+    .complete {
+      justify-self: center;
+      text-align: center;
+      width: 90%;
+    }
+  }
 }
-

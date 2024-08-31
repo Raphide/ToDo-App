@@ -1,6 +1,6 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
+import './App.scss'
 import TasksPage from './Pages/TasksPage/TasksPage'
 import CreateTaskPage from './Pages/CreateTaskPage/CreateTaskPage'
 import EditTaskPage from './Pages/EditTaskPage/EditTaskPage'
@@ -11,7 +11,7 @@ function App() {
   return (
     <>
     <BrowserRouter>
-    <h1>To-Do</h1>
+    <h1>2du</h1>
     <Routes>
       <Route path="/" element={<TasksPage/>}/>
       <Route path="/create" element={<CreateTaskPage/>}/>
