@@ -2,34 +2,6 @@ import { CategoryFormData } from "../components/CategoryForm/schema";
 import { TodoFormData } from "../components/TodoForm/schema";
 
 const baseURL = import.meta.env.VITE_APP_API_BASE_URL;
-//  // This is old
-// "id": 3,
-// "createdAt": "2024-08-24T06:31:49.840+00:00",
-// "task": "Test3",
-// "description": "Creating this beautiful API",
-// "category": "art",
-// "priority": 2,
-// "completed": false,
-// "completedAt": null,
-// "updatedAt": "2024-08-24T06:31:49.840+00:00"
-
-//  // this is new
-// {
-//   "id": 1,
-//   "createdAt": "2024-08-28T02:50:21.511+00:00",
-//   "updatedAt": "2024-08-28T02:50:21.511+00:00",
-//   "task": "Test1",
-//   "description": "Please work",
-//   "category": {
-//       "id": 2,
-//       "createdAt": "2024-08-28T02:49:58.278+00:00",
-//       "updatedAt": "2024-08-28T02:49:58.278+00:00",
-//       "name": "science"
-//   },
-//   "priority": "Medium",
-//   "completed": false,
-//   "completedAt": null
-// }
 
 export interface TodoResponse {
   id: number;
@@ -42,6 +14,7 @@ export interface TodoResponse {
   priority: string;
   completed: boolean;
   completedAt: string;
+  isArchived: boolean;
 }
 
 export interface Category {
@@ -106,6 +79,19 @@ export const createTodo = async (data: TodoFormData) => {
   return (await response.json()) as TodoResponse;
 };
 
+export const duplicateTodo = async (id: number) => {
+  const response = await fetch(baseURL + `/todos/duplicate/${id}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    throw new Error("Failed to post");
+  }
+  return (await response.json()) as TodoResponse;
+};
+
 export const editTodoById = async (id: number, data: TodoFormData) => {
   const response = await fetch(baseURL + `/todos/${id}`, {
     method: "PATCH",
@@ -123,7 +109,7 @@ export const editTodoById = async (id: number, data: TodoFormData) => {
 export const completeTodoById = async (id: number) => {
   const response = await fetch(baseURL + `/todos/complete/${id}`, {
     method: "PATCH",
-    headers:{
+    headers: {
       "Content-Type": "application/json",
     },
   });
@@ -131,7 +117,20 @@ export const completeTodoById = async (id: number) => {
     throw new Error("Something went wrong");
   }
   return (await response.json()) as TodoResponse;
-}
+};
+
+export const archiveTodoById = async (id: number) => {
+  const response = await fetch(baseURL + `/todos/archive/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    throw new Error("Something went wrong");
+  }
+  return (await response.json()) as TodoResponse;
+};
 
 export const getAllCategories = async () => {
   const response = await fetch(baseURL + "/categories");
@@ -148,7 +147,7 @@ export const createCategory = async (data: CategoryFormData) => {
     headers: {
       "Content-Type": "application/json",
     },
-  }); 
+  });
   if (!response.ok) {
     if (response.status === 500) {
       throw new Error(await response.text());
@@ -156,10 +155,10 @@ export const createCategory = async (data: CategoryFormData) => {
     throw new Error("Failed to post");
   }
   return (await response.json()) as Category;
-}
+};
 
 export const getCategoryById = async (id: number) => {
-  const response = await fetch(baseURL + `/categories/${id}`)
+  const response = await fetch(baseURL + `/categories/${id}`);
   if (!response.ok) {
     if (response.status === 404) {
       throw new Error(await response.text());
@@ -167,4 +166,4 @@ export const getCategoryById = async (id: number) => {
     throw new Error("Something went wrong");
   }
   return (await response.json()) as Category;
-}
+};

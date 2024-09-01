@@ -7,10 +7,12 @@ interface TaskCardProps {
   task: TodoResponse;
   onDelete: (id: number) => Promise<unknown>;
   onComplete: (id: number) => Promise<unknown>;
+  onArchive: (id: number) => Promise<unknown>;
+  onDuplicate: (id: number) => Promise<unknown>;
   category?: string;
 }
 
-const TaskCard = ({ task, onDelete, onComplete, category }: TaskCardProps) => {
+const TaskCard = ({ task, onDelete, onComplete, onArchive, onDuplicate, category }: TaskCardProps) => {
   const createdAt = dayjs(task.createdAt)
     .locale("au")
     .format("HH:mm:ss DD-MM-YYYY");
@@ -49,7 +51,8 @@ const TaskCard = ({ task, onDelete, onComplete, category }: TaskCardProps) => {
       <Link to={`${task.id}/edit`}>
         <button className={styles.edit}>Edit</button>
       </Link>
-      
+      <button onClick={() => onArchive(task.id)} className={styles.edit}>Archive</button>
+      <button onClick={() => onDuplicate(task.id)} className={styles.edit}>Duplicate</button>
       </span>
       {!task.completed ? (
         <button className={styles.complete} onClick={() => onComplete(task.id)}>Complete</button>

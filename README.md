@@ -67,7 +67,7 @@
 
 - Filtering of tasks by category takes them out of order of priority
 - Feature to count total Tasks completed not yet working correctly
-  - State is not yet stored anywhere to track this so it resets ater every page reload
+  - State is not yet stored anywhere to track this so it resets after every page reload
 - Feature to create Tasks and Categories still has some issues with error-handling
   - in particular reseting the form rather than throwing errors if certain fields are left empty/untouched
 - Create Category feature will not add category to the drop-down menu of categories until after the menu has been interacted with once
@@ -86,6 +86,12 @@
 ---
 
 ## Change logs
+
+### 01/09/2024 - Added final MVP features
+
+- Added Duplication and Archive functions in services
+- Added Duplication and Archive buttons on Task Cards
+  - Need to fix button styling for these
 
 ### 01/09/2024 - Various changes to the Task Page
 

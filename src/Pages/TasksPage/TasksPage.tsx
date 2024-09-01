@@ -1,8 +1,10 @@
 import { SetStateAction, useEffect, useState } from "react";
 import {
+  archiveTodoById,
   Category,
   completeTodoById,
   deleteTodoById,
+  duplicateTodo,
   getAllCategories,
   getAllTodos,
   getCategoryById,
@@ -77,6 +79,28 @@ const TasksPage = () => {
     }
   };
 
+  const onArchive = async (id: number) => {
+    const isArchived = await archiveTodoById(id).catch((e)=> {
+      console.log(e);
+      return false
+    });
+    if(isArchived){
+      const updatedTasks = tasks.filter((task) => task.isArchived !== true);
+      setTasks(updatedTasks);
+      setCompleted(!completed);
+    }
+  }
+
+  const onDuplicate = async (id: number) => {
+    const isDuplicated = await duplicateTodo(id).catch((e) => {
+      console.log(e);
+      return false;
+    });
+    if(isDuplicated){
+      setCompleted(!completed);
+    }
+  }
+
   const onComplete = async (id: number) => {
     const confirmed = confirm("Are you ready to mark this task as complete?");
     if (!confirmed) {
@@ -87,9 +111,10 @@ const TasksPage = () => {
       return false;
     });
     if (isCompleted) {
-      const updatedTasks = tasks.filter((task) => task.completed !== true);
+      // const updatedTasks = tasks.filter((task) => task.completed !== true);
+      const updatedTasks = tasks.filter((task) => task.isArchived !== true);
       setTasks(updatedTasks);
-      setCompleted(true);
+      setCompleted(!completed);
       setCount(count + 1);
     }
   };
@@ -139,37 +164,43 @@ const TasksPage = () => {
           <>
             {tasks.map(
               (task) =>
-                task.completed === isArchived &&
+                task.isArchived === isArchived &&
                 task.priority === "High" && (
                   <TaskCard
                     key={task.id}
                     task={task}
                     onDelete={onDelete}
                     onComplete={onComplete}
+                    onArchive={onArchive}
+                    onDuplicate={onDuplicate}
                   />
                 )
             )}
             {tasks.map(
               (task) =>
-                task.completed === isArchived &&
+                task.isArchived === isArchived &&
                 task.priority === "Medium" && (
                   <TaskCard
                     key={task.id}
                     task={task}
                     onDelete={onDelete}
                     onComplete={onComplete}
+                    onArchive={onArchive}
+                    onDuplicate={onDuplicate}
                   />
                 )
             )}
             {tasks.map(
               (task) =>
-                task.completed === isArchived &&
+                task.isArchived === isArchived &&
                 task.priority === "Low" && (
                   <TaskCard
                     key={task.id}
                     task={task}
                     onDelete={onDelete}
                     onComplete={onComplete}
+                    onArchive={onArchive}
+                    onDuplicate={onDuplicate}
                   />
                 )
             )}
@@ -179,13 +210,15 @@ const TasksPage = () => {
             {category &&
               category.todos.map(
                 (task) =>
-                  task.completed === isArchived && (
+                  task.isArchived === isArchived && (
                     <TaskCard
                       key={task.id}
                       task={task}
                       category={categoryName}
                       onDelete={onDelete}
                       onComplete={onComplete}
+                      onArchive={onArchive}
+                      onDuplicate={onDuplicate}
                     />
                   )
               )}
