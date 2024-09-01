@@ -32,12 +32,14 @@ const TaskCard = ({ task, onDelete, onComplete, category }: TaskCardProps) => {
   return (
     <div className={styles.card}>
       <div className={priorityStyle(task.priority)}>
-        <section className={styles.head}>
+      <button className={styles.delete} onClick={() => onDelete(task.id)}>X</button>
+        <div className={styles.head}>
         {task.category?.name ? <h3>{task.category?.name}</h3> : <h3>{category}</h3>}
         <h1>{task.task}</h1>
         <h5>Priority: {task.priority}</h5>
-        <h6>Started at: {createdAt}</h6>
-        </section>
+        
+        <h6 className={styles.time}>Started at: {createdAt}</h6>
+        </div>
       </div>
       <div className={styles.content}>
       <p>{task.description}</p>
@@ -47,7 +49,7 @@ const TaskCard = ({ task, onDelete, onComplete, category }: TaskCardProps) => {
       <Link to={`${task.id}/edit`}>
         <button className={styles.edit}>Edit</button>
       </Link>
-      <button className={styles.delete} onClick={() => onDelete(task.id)}>Delete</button>
+      
       </span>
       {!task.completed ? (
         <button className={styles.complete} onClick={() => onComplete(task.id)}>Complete</button>

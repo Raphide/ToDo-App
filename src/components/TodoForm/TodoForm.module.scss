@@ -1,25 +1,73 @@
-.formcard{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2em;
-    background-color: antiquewhite;
-    // border: 2px solid grey;
-    border-radius: 24px;
-    box-shadow: -12px 11px 7px -4px rgba(0,0,0,0.39);
+.formcard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  background-color: #f7f2fa;
+  color: rgb(37, 44, 50);
+  // border: 2px solid grey;
+  border-radius: 15px;
+  box-shadow: -12px 11px 7px -4px rgba(0, 0, 0, 0.39);
+  height: 60vh;
 }
 
-.input{
+.input {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 500px;
+  margin: 1em;
+  background-color: #e6e0e9;
+  height: 56px;
+  border-radius: 4px 4px 0 0;
+  border: none;
+  border-bottom: 2px solid #6750a4;
+  &_description {
+    height: 100px;
     display: flex;
-    flex-direction: column;
-    font-size: 1em;
-    width: 500px;
-    margin: 1em;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 500px;
+  margin: 1em;
+  background-color: #e6e0e9;
+
+  border-radius: 4px 4px 0 0;
+  border: none;
+  border-bottom: 2px solid #6750a4;
+  }
 }
 
-small{
-    color: red;
-    background-color: rgb(240, 175, 175);
-    border-radius: 24px;
+small {
+  color: red;
+  background-color: rgb(240, 175, 175);
+  border-radius: 24px;
 }
+
+label {
+  align-self: flex-start;
+  font-family: Roboto;
+  font-weight: 400;
+  line-height: 24px;
+  font-size: 16px;
+  margin-left: 16px;
+  color: #6750a4;
+}
+
+input,
+select,
+textarea {
+  margin-left: 8px;
+  margin-bottom: 8px;
+  border: none;
+  background-color: #e6e0e9;
+  justify-self: flex-end;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 16px;
+
+  &:focus {
+    border: none;
+  }
+}
+

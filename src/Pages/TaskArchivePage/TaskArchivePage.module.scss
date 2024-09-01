@@ -1,0 +1,16 @@
+.page {
+    width: 90%;
+  }
+  
+  .cardSpan {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .iconButton {
+    padding: 0px 24px 0px 16px;
+    img {
+      height: 16px;
+      padding-right: 8px;
+    }
+  }

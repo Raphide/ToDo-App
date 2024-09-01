@@ -12,6 +12,7 @@ import CategoryForm from "../CategoryForm/CategoryForm";
 import { CategoryFormData } from "../CategoryForm/schema";
 import { Link } from "react-router-dom";
 import styles from './TodoForm.module.scss'
+import { boolean } from "zod";
 
 type FormType = "CREATE" | "EDIT";
 
@@ -33,6 +34,7 @@ const TodoForm = ({
 }: TodoFormProps) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [updateCategories, setUpdateCategories] = useState<string | null>(null);
+  const [newCat, setNewCat] = useState<boolean>(false);
 
   const {
     reset,
@@ -60,7 +62,8 @@ const TodoForm = ({
   isSubmitSuccessful && reset();
   return (
     <div className={styles.formcard}>
-      <CategoryForm onSubmit={newCategory} />
+      <button onClick={()=>{setNewCat(!newCat)}}>Create a new category?</button>
+      {newCat && <CategoryForm onSubmit={newCategory} />}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.input}>
           <label htmlFor="task">Task</label>
@@ -90,7 +93,7 @@ const TodoForm = ({
           </select>
           {errors?.priority && <small>{errors.priority.message}</small>}
         </div>
-        <div className={styles.input}>
+        <div className={styles.input_description}>
           <label htmlFor="description">Description</label>
           <textarea
             id="description"

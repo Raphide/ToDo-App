@@ -2,4 +2,8 @@ body{
     background-color: rgb(37, 44, 50);
     color: #F7F2FA;
     font-family: roboto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }

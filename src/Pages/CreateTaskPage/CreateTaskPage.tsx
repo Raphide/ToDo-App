@@ -12,7 +12,7 @@ const CreateTaskPage = () => {
   }
   return (
     <div>
-        <h1>Enter A Task</h1>
+        <h2>Enter A Task</h2>
         <TodoForm onSubmit={onSubmit}/>
         </div>
   )

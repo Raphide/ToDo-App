@@ -6,7 +6,8 @@
   justify-content: flex-start;
   align-content: flex-start;
   height: 500px;
-  width: 350px;
+  min-width: 350px;
+  max-width: 350px;
   background-color: #f7f2fa;
   color: rgb(37, 44, 50);
   border-radius: 12px;
@@ -22,39 +23,60 @@
     backface-visibility: hidden;
     transition: 0.5s ease-in-out;
   }
+
   .top {
-    min-height: 186px;
-    max-height: 186px;
+    position: relative;
     height: 186px;
     width: 350px;
-
-    background-color: rgb(238, 158, 92);
     overflow: hidden;
     &_low {
       background-color: rgb(92, 204, 92);
+      height: 186px;
     }
     &_medium {
       background-color: rgb(241, 183, 75);
+      height: 186px;
     }
     &_high {
       background-color: rgb(245, 87, 87);
+      height: 186px;
     }
   }
+
   .head {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
     padding: 0px 16px;
+    height: 100%;
     h1 {
       font-size: 2em;
-      margin: 8px 0px;
+      margin: 0px;
     }
     h3 {
-      margin-top: 8px;
+      margin: 8px 0;
     }
     h5 {
       margin: 8px 0px;
     }
-    h6 {
+    .time {
+      position: absolute;
       margin: 8px 0px;
+      bottom: 0;
     }
+  }
+
+  .delete {
+    position: absolute;
+    right: 0;
+    z-index: 2;
+    align-self: center;
+    line-height: 0px;
+    padding: 12px;
+    height: 35px;
+    background-color: rgba(255, 255, 255, 0.232);
   }
 
   .content {
@@ -67,8 +89,8 @@
     flex-direction: column;
     justify-content: center;
     margin-bottom: 0px;
-
-    width: 350px;
+    padding: 0 16px;
+    width: 318px;
     h6 {
       align-self: center;
       margin: 0.5em;
@@ -86,7 +108,6 @@
     .complete {
       justify-self: center;
       text-align: center;
-      width: 90%;
     }
   }
 }

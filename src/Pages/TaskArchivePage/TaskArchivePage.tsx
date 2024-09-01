@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from "react";
+import React, { SetStateAction, useEffect, useState } from "react";
 import {
   Category,
   completeTodoById,
@@ -10,11 +10,11 @@ import {
   TodoResponse,
 } from "../../services/todo-services";
 import TaskCard from "../../components/TaskCard/TaskCard";
+import styles from "./TaskArchivePage.module.scss";
 import { Link } from "react-router-dom";
 import pencil from "../../assets/pencil.svg";
-import styles from "./TaskPage.module.scss";
 
-const TasksPage = () => {
+const TaskArchivePage = () => {
   const [tasks, setTasks] = useState<TodoResponse[]>([]);
   const [categoryId, setCategoryId] = useState<string>("0");
   const [category, setCategory] = useState<Category>();
@@ -22,8 +22,6 @@ const TasksPage = () => {
   const [priority, setPriority] = useState<string>("All");
   const [completed, setCompleted] = useState(false);
   const [count, setCount] = useState<number>(0);
-  const [isArchived, setIsArchived] = useState<boolean>(false);
-
   useEffect(() => {
     if (priority !== "All") {
       getTodosByPriority(priority)
@@ -94,10 +92,6 @@ const TasksPage = () => {
     }
   };
 
-  const handleClick = () => {
-    setIsArchived(!isArchived);
-  };
-
   const tracker = count === 0 ? "no" : count;
 
   const categoryName = category?.name;
@@ -105,7 +99,10 @@ const TasksPage = () => {
   console.log(tasks);
   return (
     <div className={styles.page}>
-      <p>Welcome to 2du. Click the "Create" button to create a new task.</p>
+      <p>
+        Welcome to 2du. On the left are your currently active 2dus. Click the
+        "Create" button to create a new task.
+      </p>
       <p>So far you have completed {tracker} 2dus!</p>
       <Link to="/create">
         <button className={styles.iconButton}>
@@ -130,56 +127,56 @@ const TasksPage = () => {
             </option>
           ))}
         </select>
-        <button onClick={handleClick}>
-          {isArchived ? "Active 2dus" : "Archived 2dus"}
-        </button>
       </div>
-      <span className={styles.cardSpan}>
-        {categoryId === "0" ? (
+      <h2>Task Archive</h2>
+      <div className={styles.cardSpan}>
+      {categoryId === "0" ? (
           <>
-            {tasks.map(
-              (task) =>
-                task.completed === isArchived &&
-                task.priority === "High" && (
-                  <TaskCard
-                    key={task.id}
-                    task={task}
-                    onDelete={onDelete}
-                    onComplete={onComplete}
-                  />
-                )
-            )}
-            {tasks.map(
-              (task) =>
-                task.completed === isArchived &&
-                task.priority === "Medium" && (
-                  <TaskCard
-                    key={task.id}
-                    task={task}
-                    onDelete={onDelete}
-                    onComplete={onComplete}
-                  />
-                )
-            )}
-            {tasks.map(
-              (task) =>
-                task.completed === isArchived &&
-                task.priority === "Low" && (
-                  <TaskCard
-                    key={task.id}
-                    task={task}
-                    onDelete={onDelete}
-                    onComplete={onComplete}
-                  />
-                )
-            )}
+            
+              {tasks.map(
+                (task) =>
+                  task.completed &&
+                  task.priority === "High" && (
+                    <TaskCard
+                      key={task.id}
+                      task={task}
+                      onDelete={onDelete}
+                      onComplete={onComplete}
+                    />
+                  )
+              )}
+              {tasks.map(
+                (task) =>
+                  task.completed &&
+                  task.priority === "Medium" && (
+                    <TaskCard
+                      key={task.id}
+                      task={task}
+                      onDelete={onDelete}
+                      onComplete={onComplete}
+                    />
+                  )
+              )}
+              {tasks.map(
+                (task) =>
+                  task.completed &&
+                  task.priority === "Low" && (
+                    <TaskCard
+                      key={task.id}
+                      task={task}
+                      onDelete={onDelete}
+                      onComplete={onComplete}
+                    />
+                  )
+              )}
+            
           </>
         ) : (
           <>
             {category &&
               category.todos.map(
                 (task) =>
-                  task.completed === isArchived && (
+                  task.completed && (
                     <TaskCard
                       key={task.id}
                       task={task}
@@ -191,9 +188,9 @@ const TasksPage = () => {
               )}
           </>
         )}
-      </span>
+      </div>
     </div>
   );
 };
 
-export default TasksPage;
+export default TaskArchivePage;
