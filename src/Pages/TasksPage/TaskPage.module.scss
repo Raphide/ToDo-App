@@ -1,9 +1,14 @@
 .page {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   width: 90%;
+  .sort {
+    label {
+      color: #f7f2fa;
+    }
+  }
 }
 
 .cardSpan {

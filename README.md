@@ -14,6 +14,10 @@
 
 ## Requirements / Purpose
 
+### purpose of project
+
+- Your task is to create an application that allows you to track, add, and delete tasks as well as manage categories of tasks.
+
 ### MVP
 
 - Must be able to add categories
@@ -22,10 +26,6 @@
 - Must be able to duplicate tasks
 - Must be able to delete tasks
 - You must add your own styling
-
-### purpose of project
-
-- Your task is to create an application that allows you to track, add, and delete tasks as well as manage categories of tasks.
 
 ### stack used
 
@@ -86,6 +86,13 @@
 ---
 
 ## Change logs
+
+### 02/09/2024 - Added final MVP features
+
+- Fixed button styling on the cards
+- Improved header styling
+- Created a style for completed task cards
+- removed feature to count total completed tasks for the time being
 
 ### 01/09/2024 - Added final MVP features
 

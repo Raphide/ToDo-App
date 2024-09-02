@@ -23,7 +23,6 @@ const TasksPage = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [priority, setPriority] = useState<string>("All");
   const [completed, setCompleted] = useState(false);
-  const [count, setCount] = useState<number>(0);
   const [isArchived, setIsArchived] = useState<boolean>(false);
 
   useEffect(() => {
@@ -65,7 +64,7 @@ const TasksPage = () => {
   };
 
   const onDelete = async (id: number) => {
-    const confirmed = confirm("Are you certain?");
+    const confirmed = confirm("Are you certain? This will delete the task forever. Consider archiving instead to save it for later");
     if (!confirmed) {
       return;
     }
@@ -111,11 +110,9 @@ const TasksPage = () => {
       return false;
     });
     if (isCompleted) {
-      // const updatedTasks = tasks.filter((task) => task.completed !== true);
       const updatedTasks = tasks.filter((task) => task.isArchived !== true);
       setTasks(updatedTasks);
       setCompleted(!completed);
-      setCount(count + 1);
     }
   };
 
@@ -123,22 +120,18 @@ const TasksPage = () => {
     setIsArchived(!isArchived);
   };
 
-  const tracker = count === 0 ? "no" : count;
-
   const categoryName = category?.name;
 
   console.log(tasks);
   return (
     <div className={styles.page}>
-      <p>Welcome to 2du. Click the "Create" button to create a new task.</p>
-      <p>So far you have completed {tracker} 2dus!</p>
       <Link to="/create">
         <button className={styles.iconButton}>
           <img src={pencil} />
           Create
         </button>
       </Link>
-      <div>
+      <div className={styles.sort}>
         <label htmlFor="sorting">Sort by priority</label>
         <select id="sorting" onChange={onPriorityChange}>
           <option id="All">All</option>

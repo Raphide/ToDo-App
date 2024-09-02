@@ -27,7 +27,7 @@
   .top {
     position: relative;
     height: 186px;
-    width: 350px;
+    width: 100%;
     overflow: hidden;
     &_low {
       background-color: rgb(92, 204, 92);
@@ -40,6 +40,15 @@
     &_high {
       background-color: rgb(245, 87, 87);
       height: 186px;
+    }
+    &_complete {
+      background-color: #7f6db1;
+      background-image: url("../../assets/certificate-solid.svg");
+      background-repeat: no-repeat;
+      background-size: 25%;
+      background-position: bottom 10px right 10px;
+      height: 186px;
+      color: #f7f2fa;
     }
   }
 
@@ -104,6 +113,27 @@
       outline: 2px solid #6750a4;
       background-color: #f7f2fa;
       color: #6750a4;
+      padding: 0px 24px 0px 16px;
+      img {
+        height: 16px;
+        padding-right: 8px;
+      }
+    }
+    .archive {
+      outline: 2px solid #6750a4;
+      background-color: #f7f2fa;
+      color: #6750a4;
+      padding: 0px 16px 0px 16px;
+    }
+    .duplicate {
+      outline: 2px solid #6750a4;
+      background-color: #f7f2fa;
+      color: #6750a4;
+      padding: 0px 16px 0px 16px;
+      img {
+        height: 16px;
+       
+      }
     }
     .complete {
       justify-self: center;
