@@ -152,6 +152,9 @@ export const createCategory = async (data: CategoryFormData) => {
     if (response.status === 500) {
       throw new Error(await response.text());
     }
+    if (response.status === 400) {
+      throw new Error(await response.text());
+    }
     throw new Error("Failed to post");
   }
   return (await response.json()) as Category;

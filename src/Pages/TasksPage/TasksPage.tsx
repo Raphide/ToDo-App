@@ -122,7 +122,6 @@ const TasksPage = () => {
 
   const categoryName = category?.name;
 
-  console.log(tasks);
   return (
     <div className={styles.page}>
       <Link to="/create">

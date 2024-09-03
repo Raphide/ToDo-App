@@ -12,7 +12,6 @@ import CategoryForm from "../CategoryForm/CategoryForm";
 import { CategoryFormData } from "../CategoryForm/schema";
 import { Link } from "react-router-dom";
 import styles from './TodoForm.module.scss'
-import { boolean } from "zod";
 
 type FormType = "CREATE" | "EDIT";
 
@@ -26,8 +25,8 @@ const TodoForm = ({
   formType = "CREATE",
   defaultValues = {
     task: "",
-    categoryId: "Please select a category",
-    priority: "Please select a priority",
+    categoryId: "",
+    priority: "",
     description: "",
   },
   onSubmit,
@@ -47,10 +46,12 @@ const TodoForm = ({
   const watchCategory = watch("categoryId");
 
   const newCategory = async (data: CategoryFormData) => {
-    setUpdateCategories(data.name);
     createCategory(data)
       .then()
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.warn(e)
+      });
+      setUpdateCategories(data.name);
   };
 
   useEffect(() => {
@@ -60,6 +61,7 @@ const TodoForm = ({
   }, [updateCategories, watchCategory]);
 
   isSubmitSuccessful && reset();
+
   return (
     <div className={styles.formcard}>
       <button onClick={()=>{setNewCat(!newCat)}}>Create a new category?</button>
@@ -73,7 +75,7 @@ const TodoForm = ({
         <div className={styles.input}>
           <label htmlFor="categoryId">Category</label>
           <select id="categoryId" {...register("categoryId")}>
-            <option disabled>Please select a category</option>
+            <option disabled value="">Please select a category</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
                 {category.name}
@@ -86,7 +88,7 @@ const TodoForm = ({
         <div className={styles.input}>
           <label htmlFor="priority">Priority</label>
           <select id="priority" {...register("priority")}>
-          <option disabled>Please select a priority</option>
+          <option disabled value="">Please select a priority</option>
             <option>High</option>
             <option>Medium</option>
             <option>Low</option>
@@ -101,8 +103,10 @@ const TodoForm = ({
             cols={40}
             {...register("description")}
           />
-          {errors?.description && <small>{errors.description.message}</small>}
-        </div>
+          
+        </div><section className={styles.descError}>
+        {errors?.description && <small style={{marginTop:"0.1em"}}>{errors.description.message}</small>}</section>
+       
         <button>{formType === "CREATE" ? "Create" : "Edit"} Task</button>
       </form>
       <Link to="/">

@@ -94,14 +94,11 @@
 - Created a style for completed task cards
 - removed feature to count total completed tasks for the time being
 
-### 01/09/2024 - Added final MVP features
+### 01/09/2024 - Added final MVP features/Various changes to the Task Page
 
 - Added Duplication and Archive functions in services
 - Added Duplication and Archive buttons on Task Cards
   - Need to fix button styling for these
-
-### 01/09/2024 - Various changes to the Task Page
-
 - Improved some basic styling and fixed the app being off-center
 - Added the ability to switch between completed and active tasks
 - this is currently presented as being "Archived", but that is to be a seperate feature to be added soon.
