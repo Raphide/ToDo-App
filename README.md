@@ -16,7 +16,7 @@
 
 ### purpose of project
 
-- Your task is to create an application that allows you to track, add, and delete tasks as well as manage categories of tasks.
+- The task is to create an application that allows you to track, add, and delete tasks as well as manage categories of tasks.
 
 ### MVP
 
@@ -68,9 +68,7 @@
 - Filtering of tasks by category takes them out of order of priority
 - Feature to count total Tasks completed not yet working correctly
   - State is not yet stored anywhere to track this so it resets after every page reload
-- Feature to create Tasks and Categories still has some issues with error-handling
-  - in particular reseting the form rather than throwing errors if certain fields are left empty/untouched
-- Create Category feature will not add category to the drop-down menu of categories until after the menu has been interacted with once
+  - Decided to remove this feature for now (03/09/2024)
 
 ---
 
@@ -86,6 +84,11 @@
 ---
 
 ## Change logs
+
+### 03/09/2024 - Fixed error handling and add category bug
+
+- Fixed issue where form would reset instead of handling errors when some fields were left empty
+- Fixed issue where newly created category would not appear in the drop down selection until after an initial selection was made
 
 ### 02/09/2024 - Added final MVP features
 

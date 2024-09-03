@@ -52,7 +52,14 @@ const TodoForm = ({
         console.warn(e)
       });
       setUpdateCategories(data.name);
+      getCategories();
   };
+
+  const getCategories = async ()=>{
+    getAllCategories()
+      .then((data) => setCategories(data))
+      .catch((e) => console.log(e));
+  }
 
   useEffect(() => {
     getAllCategories()
