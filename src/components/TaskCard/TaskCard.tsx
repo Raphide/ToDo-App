@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 import { TodoResponse } from "../../services/todo-services";
 import { Link } from "react-router-dom";
-import duplicate from "../../assets/copy-solid.svg"
 import edit from "../../assets/pen-to-square-solid.svg"
 import styles from "./TaskCard.module.scss";
 

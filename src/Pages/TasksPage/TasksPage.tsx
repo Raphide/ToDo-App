@@ -35,7 +35,6 @@ const TasksPage = () => {
         .then((data) => setTasks(data))
         .catch((e) => console.log(e));
     }
-    console.log("Is this looping?");
   }, [priority, completed]);
 
   useEffect(() => {
@@ -48,7 +47,6 @@ const TasksPage = () => {
         .then((data) => setCategories(data))
         .catch((e) => console.log(e));
     }
-    console.log("Is this looping?");
   }, [categoryId]);
 
   const onPriorityChange = (e: {

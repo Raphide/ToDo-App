@@ -1,5 +1,5 @@
 import * as z from "zod";
-import { createCategory } from "../../services/todo-services";
+
 
 export const schema = z.object({
   name: z.string().min(3, "Category must contain at least 3 characters"),

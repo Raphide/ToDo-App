@@ -6,7 +6,6 @@ import {
   Category,
   createCategory,
   getAllCategories,
-  TodoResponse,
 } from "../../services/todo-services";
 import CategoryForm from "../CategoryForm/CategoryForm";
 import { CategoryFormData } from "../CategoryForm/schema";
